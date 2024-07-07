@@ -54,7 +54,7 @@ class HomeController extends Controller
             'jabatan'=>$tamus->jab_tamu,
         ]);
         
-        return redirect()->back()->with('success', 'Selamat Datang Bpk/Ibu ' . $tamu->nama .' ,Silahkan Masuk');
+        return redirect()->back()->with('success', 'Selamat Datang Bpk/Ibu ' . $tamu->nama .' Silahkan Masuk');
     }
 
 
