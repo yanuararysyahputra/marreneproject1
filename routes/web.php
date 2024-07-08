@@ -46,6 +46,12 @@ Auth::routes();
 Route::middleware('auth')->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/daftarhadir', [App\Http\Controllers\DaftarHadirController::class, 'index'])->name('daftarhadir');
+    Route::get('/daftarvip', [App\Http\Controllers\HomeController::class, 'indexvip'])->name('daftarvip');
+    Route::get('/daftarotp', [App\Http\Controllers\HomeController::class, 'indexotp'])->name('daftarotp');
+    Route::get('/daftarotw', [App\Http\Controllers\HomeController::class, 'indexotw'])->name('daftarotw');
+    Route::get('/daftarmp', [App\Http\Controllers\HomeController::class, 'indexmp'])->name('daftarmp');
+    Route::get('/daftarmw', [App\Http\Controllers\HomeController::class, 'indexmw'])->name('daftarmw');
+
     Route::get('/scan', [ScanController::class, 'index'])->name('scan');
     Route::get('/tracking', [ScanController::class, 'tracking'])->name('tracking');
     Route::get('/scanmobile', [ScanController::class, 'indexmobile'])->name('scanmobile');

@@ -207,7 +207,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="nama">Password</label>
-                                                <input type="text" class="form-control" name="password" id="password"
+                                                <input type="password" class="form-control" name="password" id="password"
                                                     aria-describedby="nameHelp">
                                                 <small id="nameHelp" class="form-text text-muted">Masukkan Password Pengguna</small>
                                             </div>

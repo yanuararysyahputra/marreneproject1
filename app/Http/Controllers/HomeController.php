@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Tamu;
 use App\Models\User;
 use App\Models\DaftarUndangan;
+use App\Models\Pengantin;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -33,7 +34,58 @@ class HomeController extends Controller
     {
         $totaltamu = Tamu::where('uuid_user', Auth::user()->uuid)->get()->count();
         $totalundangan = DaftarUndangan::where('uuid_user', Auth::user()->uuid)->get()->count();
-        return view('home', compact('totaltamu','totalundangan'));
+        $vip = DaftarUndangan::where('uuid_user', Auth::user()->uuid)->where('type_tamu', 'TAMU VIP')->count();
+        $otp = DaftarUndangan::where('uuid_user', Auth::user()->uuid)->where('type_tamu', 'TAMU ORANG TUA PRIA')->count();
+        $otw = DaftarUndangan::where('uuid_user', Auth::user()->uuid)->where('type_tamu', 'TAMU ORANG TUA WANITA')->count();
+        $mp = DaftarUndangan::where('uuid_user', Auth::user()->uuid)->where('type_tamu', 'TAMU MEMPELAI PRIA')->count();
+        $mw = DaftarUndangan::where('uuid_user', Auth::user()->uuid)->where('type_tamu', 'TAMU MEMPELAI WANITA')->count();
+
+        return view('home', ['vip'=>$vip, 'otp'=>$otp, 'otw'=>$otw, 'mp'=>$mp, 'mw'=>$mw], compact('totaltamu','totalundangan'));
+    }
+
+    public function indexvip()
+    {
+        $data = DaftarUndangan::all();
+        $data = DaftarUndangan::where('type_tamu','TAMU VIP')->where('uuid_user', Auth::user()->uuid)->simplePaginate(10);
+        $dp = Pengantin::all();
+        $dp = Pengantin::where('uuid_user', Auth::user()->uuid)->get();
+        return view('daftarvip',compact('data','dp'));
+    }
+
+    public function indexotp()
+    {
+        $data = DaftarUndangan::all();
+        $data = DaftarUndangan::where('type_tamu','TAMU ORANG TUA PRIA')->where('uuid_user', Auth::user()->uuid)->simplePaginate(10);
+        $dp = Pengantin::all();
+        $dp = Pengantin::where('uuid_user', Auth::user()->uuid)->get();
+        return view('daftarotp',compact('data','dp'));
+    }
+
+    public function indexotw()
+    {
+        $data = DaftarUndangan::all();
+        $data = DaftarUndangan::where('type_tamu','TAMU ORANG TUA WANITA')->where('uuid_user', Auth::user()->uuid)->simplePaginate(10);
+        $dp = Pengantin::all();
+        $dp = Pengantin::where('uuid_user', Auth::user()->uuid)->get();
+        return view('daftarotw',compact('data','dp'));
+    }
+
+    public function indexmp()
+    {
+        $data = DaftarUndangan::all();
+        $data = DaftarUndangan::where('type_tamu','TAMU MEMPELAI PRIA')->where('uuid_user', Auth::user()->uuid)->simplePaginate(10);
+        $dp = Pengantin::all();
+        $dp = Pengantin::where('uuid_user', Auth::user()->uuid)->get();
+        return view('daftarmp',compact('data','dp'));
+    }
+
+    public function indexmw()
+    {
+        $data = DaftarUndangan::all();
+        $data = DaftarUndangan::where('type_tamu','TAMU MEMPELAI WANITA')->where('uuid_user', Auth::user()->uuid)->simplePaginate(10);
+        $dp = Pengantin::all();
+        $dp = Pengantin::where('uuid_user', Auth::user()->uuid)->get();
+        return view('daftarmw',compact('data','dp'));
     }
 
     public function tema()

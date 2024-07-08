@@ -124,6 +124,15 @@
                with font-awesome or any other icon font library -->
 
                         <li class="nav-header">MASTER</li>
+                        <li class="nav-item">
+                            <a href="{{ route('home')}}" class="nav-link">
+                            <i class="nav-icon fas fa-house-user"></i>
+                            <p>
+                                Beranda
+                                <span class="badge badge-info right"></span>
+                            </p>
+                            </a>
+                        </li>
                         <li class="nav-item" style="display: {{ Auth::user()->role == 'Client'?'': 'none' }}">
                             <a href="{{ route('datapengantin') }}" class="nav-link">
                                 <i class="nav-icon fas fa-database"></i>
@@ -178,6 +187,15 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{ route('tracking')}}" class="nav-link">
+                            <i class="nav-icon fas fa-desktop"></i>
+                            <p>
+                                Tracking Tamu
+                                <span class="badge badge-info right"></span>
+                            </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
@@ -216,12 +234,12 @@
                         <div class="row">
                             <div class="col-lg-3 col-6">
                                 <!-- small box -->
-                                <div class="small-box bg-info">
+                                <div class="small-box bg-gradient-info">
                                     <div class="inner">
                                         <h3>{{ $totaltamu }}</h3>
                                         <h3></h3>
 
-                                        <p>Total Tamu</p>
+                                        <p>Total Tamu Hadir</p>
                                     </div>
                                     <div class="icon">
                                         <i class="fas fa-users"></i>
@@ -232,7 +250,7 @@
                             </div>
                             <div class="col-lg-3 col-6">
                                 <!-- small box -->
-                                <div class="small-box bg-success">
+                                <div class="small-box bg-gradient-success">
                                     <div class="inner">
                                         <h3>{{ $totalundangan }}</h3>
                                         <h3></h3>
@@ -243,6 +261,86 @@
                                         <i class="fas fa-users"></i>
                                     </div>
                                     <a href="{{ route('daftarundangan') }}" class="small-box-footer">Lihat Detail <i
+                                            class="fas fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-6">
+                                <!-- small box -->
+                                <div class="small-box bg-gradient-warning">
+                                    <div class="inner">
+                                        <h3>{{ $vip }}</h3>
+                                        <h3></h3>
+
+                                        <p>Total Tamu VIP</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fas fa-users"></i>
+                                    </div>
+                                    <a href="{{ route('daftarvip') }}" class="small-box-footer">Lihat Detail <i
+                                            class="fas fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-6">
+                                <!-- small box -->
+                                <div class="small-box bg-gradient-danger">
+                                    <div class="inner">
+                                        <h3>{{ $otp }}</h3>
+                                        <h3></h3>
+
+                                        <p>Total Tamu Orang Tua Pria</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fas fa-users"></i>
+                                    </div>
+                                    <a href="{{ route('daftarotp') }}" class="small-box-footer">Lihat Detail <i
+                                            class="fas fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-6">
+                                <!-- small box -->
+                                <div class="small-box bg-gradient-danger">
+                                    <div class="inner">
+                                        <h3>{{ $otw }}</h3>
+                                        <h3></h3>
+
+                                        <p>Total Tamu Orang Tua Wanita</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fas fa-users"></i>
+                                    </div>
+                                    <a href="{{ route('daftarotw') }}" class="small-box-footer">Lihat Detail <i
+                                            class="fas fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-6">
+                                <!-- small box -->
+                                <div class="small-box bg-gradient-dark">
+                                    <div class="inner">
+                                        <h3>{{ $mp }}</h3>
+                                        <h3></h3>
+
+                                        <p>Total Tamu Mempelai Pria</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fas fa-users"></i>
+                                    </div>
+                                    <a href="{{ route('daftarmp') }}" class="small-box-footer">Lihat Detail <i
+                                            class="fas fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-6">
+                                <!-- small box -->
+                                <div class="small-box bg-gradient-dark">
+                                    <div class="inner">
+                                        <h3>{{ $mw }}</h3>
+                                        <h3></h3>
+
+                                        <p>Total Tamu Mempelai Wanita</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fas fa-users"></i>
+                                    </div>
+                                    <a href="{{ route('daftarmw') }}" class="small-box-footer">Lihat Detail <i
                                             class="fas fa-arrow-circle-right"></i></a>
                                 </div>
                             </div>

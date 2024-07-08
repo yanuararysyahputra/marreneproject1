@@ -7,7 +7,7 @@
   <meta name="keywords" content="" />
   <meta name="description" content="" />
   <meta name="author" content="" />
-  <title>Daftar Undangan</title>
+  <title>Daftar Hadir Tamu</title>
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 
   <!-- Google Font: Source Sans Pro -->
@@ -91,7 +91,8 @@
   <aside class="main-sidebar sidebar-light-primary elevation-4">
     <!-- Brand Logo -->
     <a href="" class="brand-link">
-      <img src="{{ asset('baackend/dist/img/Marrene.png')}}" alt="AdminLTE Logo" height="80" width="220">
+      <img src="{{ asset('baackend/dist/img/Marrene.png')}}" alt="AdminLTE Logo" 
+      height="80" width="220">
     </a>
 
     <!-- Sidebar -->
@@ -117,7 +118,7 @@
                with font-awesome or any other icon font library -->
           
                <li class="nav-header">MASTER</li>
-               <li class="nav-item">
+                      <li class="nav-item">
                             <a href="{{ route('home')}}" class="nav-link">
                             <i class="nav-icon fas fa-house-user"></i>
                             <p>
@@ -125,7 +126,7 @@
                                 <span class="badge badge-info right"></span>
                             </p>
                             </a>
-                        </li>
+                      </li>
                         <li class="nav-item">
                             <a href="{{ route('datapengantin') }}" class="nav-link">
                                 <i class="nav-icon fas fa-database"></i>
@@ -212,96 +213,37 @@
     <div class="content-header">
         <section class="content">
           <div class="container-fluid">
-            <div class="row pt-5">
-              <div class="col-md-5 mx-auto">
-                <h1 class="mb-3 text-center">Daftar Undangan</h1>
+            <div class="row pt-2">
+              <div class="col-md-5 mx-auto">@foreach($dp as $dd)
+                <h1 class="mb-3 text-center">Daftar Hadir Tamu Mempelai Wanita <br> {{$dd->nama_pria}} & {{$dd->nama_wanita}}</h1>
+                @endforeach
               </div>
             </div>
           </div>
           <div class="container-fluid mx-auto" style="width: 1000px">
-          <a class="btn btn-outline-success mb-2" data-toggle="modal" data-target="#modaltamu">Undang Tamu <i class="mx-1 fas fa-user-plus"></i></a>
-                    <!--Modal Data Pengantin-->
-                    <div class="modal fade" id="modaltamu">
-                        <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                            <h4 class="modal-title text-center">Data Tamu Undangan</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            </div>
-                            <div class="modal-body">
-                            <form action="{{ route('store_dtamu') }}" method="post">
-                            @csrf
-                            @include('sweetalert::alert')
-                                <div class="row g-3 justify-content-center">
-                                    <div class="col-5 pt-2">
-                                        <label >Nama Tamu</label>
-                                        <input type="text" class="form-control" id="nama_tamu" name="nama_tamu" placeholder="Nama Tamu">
-                                    </div>
-                                    <div class="col-5 pt-2">
-                                        <label>Alamat</label>
-                                        <input type="text" class="form-control" id="alamat_tamu" name="alamat_tamu" placeholder="Alamat Tamu">
-                                    </div>
-                                    <div class="col-5 pt-2">
-                                      <label>Kategori Tamu</label>
-                                    <select type="text" class="form-control" id="type_tamu" name="type_tamu">
-                                      <option>KATEGORI TAMU</option>
-                                      <option>TAMU ORANG TUA PRIA</option>
-                                      <option>TAMU ORANG TUA WANITA</option>
-                                      <option>TAMU MEMPELAI PRIA</option>
-                                      <option>TAMU MEMPELAI WANITA</option>
-                                      <option>TAMU VIP</option>
-                                    </select>
-                                    </div>
-                                    <div class="col-5 pt-2">
-                                        <label>Jabatan</label>
-                                        <input type="text" class="form-control" id="jab_tamu" name="jab_tamu" placeholder="Tulis Jabatan Jika Ada">
-                                    </div>
-                                    <div class="col-5 pt-2">
-                                        <label>No Telp</label>
-                                        <input type="text" class="form-control" id="notelp_tamu" name="notelp_tamu" value="62">
-                                    </div>
-                                </div>
-                                <br>
-                                <p>Note :
-                                  <br>1. No Telp Wajib Diawali 62. Contoh-> (6289589897845).
-                                  <br>2. Isi Jabatan Jika Tamu VIP Memiliki Jabatan.
-                                  </p>    
-                                <div class="row pt-4 modal-footer justify-content-between">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Simpan Data</button>
-                                    </div>
-                                </div>
-                        </form>
-                            </div>
-                        </div>
-                        </div>          
-                    <table class="table table-striped border">
+          <table class="table table-striped border">
                     <thead>
                       <tr>
                         <th scope="col">No</th>
                         <th scope="col">Nama</th>
                         <th scope="col">Alamat</th>
                         <th scope="col">Kategori</th>
-                        <th scope="col">No Telp</th>
-                        <th scope="col">Bagikan</th>
                       </tr>
                     </thead>
                     <tbody>
-                    @foreach($dtamu as $no => $item)
+                      @foreach($data as $no => $item)
                       <tr>
                         <td>{{$no+1}}</td>
                         <td>{{$item['nama_tamu']}}</td>
                         <td>{{$item['alamat_tamu']}}</td>
                         <td>{{$item['type_tamu']}}</td>
-                        <td>{{$item['notelp_tamu']}}</td>
-                        <td><a href="https://wa.me/{{$item->notelp_tamu}}?text=*Yth. Bapak/Ibu {{$item->nama_tamu}}*%0aTanpa mengurangi rasa hormat,%0aperkenankan kami mengundang%0aBapak/Ibu/Saudara/i,%0ateman sekaligus sahabat, untuk%0amenghadiri acara pernikahan kami%3a%0a{{$pengantin->nama_pria}} dan {{$pengantin->nama_wanita}}%0a%0aTanggal dan Tempat %3a%0aAkad%20%3a {{$pengantin->akad}}%0aResepsi %3a {{$pengantin->akad}} %0aTempat %3a {{$pengantin->tempat}}%0a%0aBerikut adalah Link Buku Tamu%0aDigital Kami, silahkan Klik%0aLink dibawah ini%3a%0a{{url('/undanganku')}}/{{$pengantin->slug}}/{{$item->nama_tamu}}%0a%0aJangan lupa ya.. untuk menunjukkan%0a*QR-Code* yang terlihat setelah%0amengklik link diatas sebagai%0apendataan daftar hadir undangan%0a{{$pengantin->nama_pria}} dan {{$pengantin->nama_wanita}}%0aSilahkan tunjukkan *QR-Code* kepada%0a*WO Marrene Official* yang sedang%0abertugas.%0a%0aTerukir kesan yang dalam dihati%0akami apabila Bapak/Ibu/Saudara/i%0aberkenan hadir untuk mengiringi, dan%0amemberikan doa restu kepada kami.%0aAtas perhatiannya kami ucapkan Terima Kasih
-" class="btn btn-success">Bagikan <i class="mx-1 fab fa-whatsapp"></i></a></td>
                       </tr>
                       @endforeach
                     </tbody>
                   </table>
+                  <div class="justify-content-center" align=center>
+                      {{$data->links()}}
+                </div>
           </div>
         </section>
     </div>        

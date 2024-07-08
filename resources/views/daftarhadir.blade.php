@@ -181,6 +181,15 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{ route('tracking')}}" class="nav-link">
+                            <i class="nav-icon fas fa-desktop"></i>
+                            <p>
+                                Tracking Tamu
+                                <span class="badge badge-info right"></span>
+                            </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">

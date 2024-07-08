@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Tamu;
 use App\Models\DaftarUndangan;
+use App\Models\Pengantin;
 use Mpdf\Mpdf;
 
 
@@ -18,6 +19,7 @@ class DaftarHadirController extends Controller
         $data = Tamu::where('uuid_user', Auth::user()->uuid)->simplePaginate(10);
         return view('daftarhadir',compact('data'));
     }
+    
 
     public function download()
     {
